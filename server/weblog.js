@@ -1,9 +1,12 @@
+// external modules
 const express = require('express');
+const app = express();
+const expressWs = require('express-ws')(app);
 const bodyParser = require('body-parser');
 const Config = require('./config');
 const Queue = require('./queue');
 
-const app = express();
+// application setup
 const router = express.Router();
 app.use(bodyParser.urlencoded({
 	extended: true
@@ -28,9 +31,15 @@ router.get('/logs', function (req, res) {
 	});
 });
 
+router.ws('/test', function (ws, req) {
+	ws.on('message', function (msg) {
+		console.log(msg);
+	});
+});
+
 app.use('/api', router);
 
-app.listen(Config.port, function() {
+app.listen(Config.port, function () {
 	console.log(`app listening on port ${Config.port}`);
 });
 
