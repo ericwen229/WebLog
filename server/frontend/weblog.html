@@ -5,27 +5,27 @@
 		<title>WebLog Console</title>
 	</head>
 	<body>
-		<div id="logTable"></div>
+		<div id="logContent"></div>
 		<script src="jquery-3.2.1.min.js"></script>
 		<script>
-			function updateContent() {
+			function loadContent() {
 				$.ajax({
-					url: 'http://127.0.0.1:3000/log',
+					url: 'http://127.0.0.1:3000/api/logs',
 					type: 'GET',
 					dataType: 'json',
 					success: function(json) {
 						let data = json.data;
-						var tableHtml = "<table>";
+						var contentHtml = "<pre>";
 						$.each(data, function(i, item) {
-							tableHtml += `<tr><td>${item}</td></tr>`
+							contentHtml += item;
 						});
-						tableHtml += "</table>";
-						$("#logTable").html(tableHtml);
+						contentHtml += "</pre>";
+						$("#logContent").html(contentHtml);
 					}
 				});
 			}
 			$(document).ready(function() {
-				setInterval(updateContent, 5000);
+				setInterval(loadContent, 5000);
 			});
 		</script>
 	</body>
