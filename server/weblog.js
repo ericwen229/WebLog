@@ -1,21 +1,22 @@
 const express = require('express');
-const app = express();
 const bodyParser = require('body-parser');
 
+const app = express();
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
 app.use(express.static('frontend', {extensions:['html']}))
 
-const port = 3000;
+const Config = require('./config')
+const Queue = require('./queue')
 
-const logArray = new Array();
+const logQueue = new Queue(Config.maxLogNum);
 
 app.post('/log', function (req, res) {
 	let logStr = req.body.str;
 	if (logStr.length > 0) {
-		logArray.push(req.body.str);
+		logQueue.enqueue(req.body.str);
 	}
 	res.json({'status':'success'});
 });
@@ -23,11 +24,11 @@ app.post('/log', function (req, res) {
 app.get('/log', function (req, res) {
 	res.json({
 		'status': 'success',
-		'data': logArray,
+		'data': logQueue.toArray(),
 	});
 });
 
-app.listen(port, function() {
-	console.log(`app listening on port ${port}`);
+app.listen(Config.port, function() {
+	console.log(`app listening on port ${Config.port}`);
 });
 
