@@ -1,22 +1,23 @@
 // external modules
-const express = require('express');
-const app = express();
-const expressWs = require('express-ws')(app);
-const bodyParser = require('body-parser');
-const Config = require('./config');
-const Queue = require('./queue');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var Config = require('./config');
+var Queue = require('./queue');
 
 // application setup
-const router = express.Router();
+var router = express.Router();
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
 app.use(bodyParser.json());
 app.use(express.static('frontend', {extensions:['html']}))
 
-const logQueue = new Queue(Config.maxLogNum);
+var logQueue = new Queue(Config.maxLogNum);
 
-router.post('/logs', function (req, res) {
+router.post('/logs', function(req, res) {
 	let logStr = req.body.str;
 	if (logStr.length > 0) {
 		logQueue.enqueue(req.body.str);
@@ -24,22 +25,23 @@ router.post('/logs', function (req, res) {
 	res.json({'status':'success'});
 });
 
-router.get('/logs', function (req, res) {
+router.get('/logs', function(req, res) {
 	res.json({
 		'status': 'success',
 		'data': logQueue.toArray(),
 	});
 });
 
-router.ws('/test', function (ws, req) {
-	ws.on('message', function (msg) {
-		console.log(msg);
+io.on('connection', function(socket) {
+	console.log('a user connected');
+	socket.on("disconnect", function() {
+		console.log('a user disconnected');
 	});
 });
 
 app.use('/api', router);
 
-app.listen(Config.port, function () {
-	console.log(`app listening on port ${Config.port}`);
+server.listen(Config.port, function() {
+	console.log(`server listening on port ${Config.port}`);
 });
 
