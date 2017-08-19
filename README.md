@@ -85,6 +85,14 @@ curl --request POST \
   --data str=foo
 ```
 
+Python 3 example (using given library):
+
+```python
+from weblog import WebLog as wl
+wl.config('127.0.0.1', 3000)
+wl.log('foo')
+```
+
 Python 3 example:
 
 ```python
