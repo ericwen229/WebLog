@@ -76,10 +76,19 @@ parameters:
     required: yes
 ```
 
+curl example:
+
+```sh
+curl --request POST \
+  --url http://127.0.0.1:3000/api/logs \
+  --header 'content-type: application/x-www-form-urlencoded' \
+  --data str=foo
+```
+
 Python 3 example:
 
 ```python
-data = urllib.parse.urlencode({'str': logStr}).encode('utf-8')
+data = urllib.parse.urlencode({'str': 'foo'}).encode('utf-8')
 req = urllib.request.Request('http://%s:%d/api/logs' % (url, port), data=data)
 res = urllib.request.urlopen(req)
 ```
