@@ -12,7 +12,27 @@
 		<script src="jquery-3.2.1.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-			var socket = io();
+			function loadData() {
+				$.ajax({
+					url: "/api/logs",
+					method: "GET",
+					dataType: "json",
+				}).done(function(json) {
+					$.each(json.data, function(index, item) {
+						$("#logContent").append(item);
+					});
+					registerUpdate();
+				});
+			}
+			function registerUpdate() {
+				var socket = io();
+				socket.on('logUpdate', function(log) {
+					$('#logContent').append(log);
+				});
+			}
+			$(document).ready(function() {
+				loadData();
+			});
 		</script>
 	</body>
 </html>

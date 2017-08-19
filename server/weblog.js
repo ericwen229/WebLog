@@ -20,7 +20,8 @@ var logQueue = new Queue(Config.maxLogNum);
 router.post('/logs', function(req, res) {
 	let logStr = req.body.str;
 	if (logStr.length > 0) {
-		logQueue.enqueue(req.body.str);
+		logQueue.enqueue(logStr);
+		io.emit('logUpdate', logStr);
 	}
 	res.json({'status':'success'});
 });
