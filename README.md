@@ -10,6 +10,15 @@ WebLog lets you upload your log to the server
 This software is free software released under GPLv3
  license.
 
+Why this?
+-------
+In most cases, tools like ssh are adequate, except that
+ the worker machine is not accessible from public network.
+ Suppose there are several machines in a lab, and usually
+ few of them have public IP addresses. Therefore, things
+ would be much easier if a server is set up and each worker
+ machine post its log to the server.
+
 How to use it?
 --------
 
