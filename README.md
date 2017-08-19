@@ -73,7 +73,7 @@ parameters:
   str:
     description: log to post
     type: string
-	required: yes
+    required: yes
 ```
 
 Python 3 example:
