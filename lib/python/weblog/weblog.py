@@ -3,10 +3,10 @@ import urllib.parse
 
 class WebLog:
     url = '127.0.0.1'
-    port = 3000
+    port = 8082
 
     @classmethod
-    def config(cls, url='127.0.0.1', port=3000):
+    def config(cls, url='127.0.0.1', port=8082):
         cls.url = url
         cls.port = port
 
