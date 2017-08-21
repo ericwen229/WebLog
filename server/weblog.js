@@ -24,6 +24,7 @@ router.post('/logs', function(req, res) {
 		io.emit('logUpdate', logStr);
 	}
 	res.json({'status':'success'});
+	res.end();
 });
 
 router.get('/logs', function(req, res) {
@@ -31,6 +32,16 @@ router.get('/logs', function(req, res) {
 		'status': 'success',
 		'data': logQueue.toArray(),
 	});
+	res.end();
+});
+
+router.get('/export', function(req, res) {
+	res.setHeader("Content-Disposition", "attachment; filename=export.txt");
+	res.setHeader("Content-type", "text/plain");
+	logQueue.toArray().forEach(function(element) {
+		res.write(element);
+	});
+	res.end();
 });
 
 io.on('connection', function(socket) {

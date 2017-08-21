@@ -15,4 +15,5 @@ class WebLog:
         data = urllib.parse.urlencode({'str': logStr}).encode('utf-8')
         req = urllib.request.Request('http://%s:%d/api/logs' % (cls.url, cls.port), data=data)
         res = urllib.request.urlopen(req)
+        print(logStr, end='')
 
