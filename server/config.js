@@ -1,5 +1,5 @@
 var Config = {
-	port: 3000,
+	port: 8082,
 	maxLogNum: null,
 };
 module.exports = Config;
