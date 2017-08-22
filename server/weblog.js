@@ -44,6 +44,11 @@ router.get('/export', function(req, res) {
 	res.end();
 });
 
+router.post('/clear', function(req, res) {
+	logQueue.clear();
+	res.end();
+});
+
 io.on('connection', function(socket) {
 	console.log('a user connected');
 	socket.on("disconnect", function() {

@@ -18,4 +18,8 @@ Queue.prototype.toArray = function() {
 	return this.storage;
 }
 
+Queue.prototyle.clear = function() {
+	this.storage = [];
+}
+
 module.exports = Queue;
