@@ -32,7 +32,7 @@ Then use the library provided to print log in your program.
  upload the log (description of the APIs will be included
  later).
 
-Setting up the server
+Setting up backend server
 --------
 
 Prerequesites:
@@ -66,6 +66,11 @@ node weblog.js
 
 Default settings can be found in `config.js`, and
  are fully customizable.
+
+Setting up frontend server
+--------
+
+See `README.md` in subdirectory `frontend`.
 
 Posting the log
 --------
