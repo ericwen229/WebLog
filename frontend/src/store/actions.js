@@ -9,3 +9,7 @@ export function startSync ({ commit }) {
     commit('APPEND_LOG', log)
   })
 }
+
+export function clearLog ({ commit }) {
+  commit('UPDATE_LOG', [])
+}

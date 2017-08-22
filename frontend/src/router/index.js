@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Log from '@/components/Log'
+import Log from '@/views/Log'
 
 Vue.use(Router)
 
