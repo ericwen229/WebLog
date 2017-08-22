@@ -3,7 +3,7 @@ function Queue(capacity) {
 	this.capacity = capacity;
 }
 
-Queue.prototype.enqueue = function(element){
+Queue.prototype.enqueue = function(element) {
 	this.storage.push(element);
 	if (!!this.capacity && this.storage.length > this.capacity) {
 		this.dequeue();
@@ -16,10 +16,10 @@ Queue.prototype.dequeue = function() {
 
 Queue.prototype.toArray = function() {
 	return this.storage;
-}
+};
 
-Queue.prototyle.clear = function() {
+Queue.prototype.clear = function() {
 	this.storage = [];
-}
+};
 
 module.exports = Queue;
