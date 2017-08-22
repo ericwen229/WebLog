@@ -78,5 +78,8 @@ export default {
   overflow: auto;
   background-color: #242424;
   color: #FFFFFF;
+  border: 0px solid;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
 }
 </style>
