@@ -6,6 +6,7 @@ if (!process.env.NODE_ENV) {
 var path = require('path')
 var express = require('express')
 var proxyMiddleware = require('http-proxy-middleware')
+var compressMiddleware = require('compression')
 
 // default port where dev server listens for incoming traffic
 var port = process.env.PORT || config.dev.port
@@ -24,14 +25,21 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
+app.use(compressMiddleware())
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
-app.use(express.static(config.build.assetsRoot))
+var staticConfig = {
+  etag: false,
+  maxAge: '10m',
+}
+
+app.use(express.static(config.build.assetsRoot, staticConfig))
 
 // serve pure static assets
 var staticPath = path.posix.join(config.build.assetsPublicPath, config.build.assetsSubDirectory)
-app.use(staticPath, express.static('./static'))
+app.use(staticPath, express.static('./static', staticConfig))
 
 var uri = 'http://localhost:' + port
 

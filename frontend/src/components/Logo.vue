@@ -4,12 +4,12 @@
 </template>
 
 <script>
-const PI_2 = 2 * Math.PI
 const PI = Math.PI
+const PI_2 = 2 * PI
 const PI_1_6 = PI / 6
 const PI_1_3 = PI / 3
 const PI_2_3 = PI_2 / 3
-const PI_4_3 = 2 * PI_2 / 3
+const PI_4_3 = 4 * PI / 3
 const PI_5_3 = 5 * PI / 3
 
 export default {
@@ -67,6 +67,7 @@ export default {
   line-height: 3rem;
   display: inline-block;
   user-select: none;
+  cursor: default;
 }
 
 .logo--item {
