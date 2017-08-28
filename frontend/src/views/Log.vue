@@ -4,7 +4,8 @@
       logo.log--logo(text='WebLog')
       span.log--buttons
         log-button(type='warning', @click='clearLog') Clear
-        log-button(type='primary') Export
+        a(href='/api/logs?download=1', download)
+          log-button(type='primary') Export
     .log--view(ref='logView')
       log-view(:log='log')
 </template>

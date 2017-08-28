@@ -4,6 +4,7 @@
   "description": "",
   "main": "weblog.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ericwen229",
@@ -11,10 +12,18 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "morgan": "^1.8.2",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
-    "vue-resource": "^1.3.4",
-    "vuex": "^2.3.1"
+    "eslint": "^4.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-tidyzq": "^1.0.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
